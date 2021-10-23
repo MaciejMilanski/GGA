@@ -33,7 +33,10 @@ namespace JadroWielokataProstego
             var ymin = polygon.CheckMins(polygonMins).y;
 
             if (ymin > ymax)
+            {
                 Console.WriteLine("Istnieje jądro");
+                Console.WriteLine("Obwód: " + polygon.GetCoreCircuit(polygon.CheckMins(polygonMins), polygon.CheckMaxs(polygonMaxs)).ToString());
+            }
             else
                 Console.WriteLine("Nie istnieje Jądro");
         }
