@@ -29,13 +29,39 @@ namespace JadroWielokataProstego
             }
             //polygonMaxs.Add(globalMax);
             //polygonMins.Add(globalMin);
-            var ymax = polygon.CheckMaxs(polygonMaxs).y;
-            var ymin = polygon.CheckMins(polygonMins).y;
+            Point newLocalMin = new Point();
+            Point newLocalMax = new Point();
+            int ymax;
+            int ymin;
+            if (polygonMaxs.Count < 1)
+            {
+                newLocalMax = globalMin;
+                ymax = newLocalMax.y;
+            }
+            else
+            {
+                newLocalMax = polygon.CheckMaxs(polygonMaxs);
+                ymax = newLocalMax.y;
+            }
 
-            if (ymin > ymax)
+
+            if (polygonMins.Count < 1)
+            {
+                newLocalMin = globalMax;
+                ymin = newLocalMin.y;
+            }
+
+            else
+            {
+                newLocalMin = polygon.CheckMins(polygonMins);
+                ymin = newLocalMin.y;
+            }
+            
+
+            if (ymin >= ymax)
             {
                 Console.WriteLine("Istnieje jądro");
-                Console.WriteLine("Obwód: " + polygon.GetCoreCircuit(polygon.CheckMins(polygonMins), polygon.CheckMaxs(polygonMaxs)).ToString());
+                Console.WriteLine("Obwód: " + polygon.GetCoreCircuit(newLocalMin, newLocalMax).ToString());
             }
             else
                 Console.WriteLine("Nie istnieje Jądro");

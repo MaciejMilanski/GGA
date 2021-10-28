@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace JadroWielokataProstego
+namespace Najbliższe_punkty_na_płaszczyźnie
 {
     public class DataReader
     {
