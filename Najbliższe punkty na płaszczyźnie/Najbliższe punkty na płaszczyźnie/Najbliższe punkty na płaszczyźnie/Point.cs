@@ -16,14 +16,14 @@ namespace Najbliższe_punkty_na_płaszczyźnie
         public int y { get; set; }
         public static bool operator == (Point a, Point b)
         {
-            if (a.x == b.x && a.y == b.y)
+            if (!(a is null) && !(b is null) && a.x == b.x && a.y == b.y)
                 return true;
             else
                 return false;
         }
         public static bool operator !=(Point a, Point b)
         {
-            if (a.x == b.x && a.y == b.y)
+            if ((a is null) && (b is null) && a.x == b.x && a.y == b.y)
                 return false;
             else
                 return true;

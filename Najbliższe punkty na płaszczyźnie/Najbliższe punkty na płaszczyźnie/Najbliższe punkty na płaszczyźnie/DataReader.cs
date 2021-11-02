@@ -10,7 +10,7 @@ namespace Najbliższe_punkty_na_płaszczyźnie
 {
     public class DataReader
     {
-        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data8.txt";
+        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data3.txt";
         public DataReader() 
         {
         }
