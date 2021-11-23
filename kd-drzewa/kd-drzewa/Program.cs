@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
+
 namespace kd_drzewa
 {
     class Program
@@ -22,15 +23,13 @@ namespace kd_drzewa
             if (level % 2 == 0)
             {
                 if (pointsX.Count < 3) 
-                {
-                    root.LeftLeaf = new Node();
-                    root.RightLeaf = new Node();
-                    root.LeftLeaf.Point = pointsX[0];
+                {                    
+                    root.LeftPoint = pointsX[0];
                     if (pointsX.Count > 1)
-                        root.RightLeaf.Point = pointsX[1];
-                    root.Level = level;
+                        root.RightPoint = pointsX[1];                    
                     return root;
                 }
+                root.Level = level;
                 var midPointXIndex = pointsX.Count / 2;
                 Point midPointX = pointsX[midPointXIndex];
 
@@ -58,16 +57,13 @@ namespace kd_drzewa
             {
                 if (pointsY.Count < 3)
                 {
-                    root.LeftLeaf = new Node();
-                    root.RightLeaf = new Node();
-                    root.LeftLeaf.Point = pointsY[0];
+                    root.LeftPoint = pointsY[0];
                     if(pointsY.Count > 1)
-                        root.RightLeaf.Point = pointsY[1];
-                    root.Level = level;
+                        root.RightPoint = pointsY[1];
                     return root;
                 }
-
-                var midPointYIndex = pointsY.Count / 2;
+                root.Level = level;
+                var midPointYIndex = Math.up(pointsY.Count / 2).;//ZAOKRĄGLIĆ DO GÓRY
                 Point midPointY = pointsY[midPointYIndex];
 
                 var leftListY = pointsY.Take(midPointYIndex).ToList();

@@ -9,16 +9,16 @@ namespace kd_drzewa
     class Node
     {
         public Node() { }
-        public Node(Node leftLeaf, Node rightLeaf, int level, Point point)
+        public Node(Node leftLeaf, Node rightLeaf, int level)
         {
             LeftLeaf = leftLeaf;
             RightLeaf = rightLeaf;
             Level = level;
-            Point = point;
         }
         public Node LeftLeaf { get; set; }
         public Node RightLeaf { get; set; }
         public int Level { get; set; }
-        public Point Point { get; set; }
-}
+        public Point LeftPoint { get; set; }
+        public Point RightPoint { get; set; }
+    }
 }
