@@ -11,35 +11,87 @@ namespace kd_drzewa
             var points = DataReader.GetPoints();
             var pointsX = points.OrderBy(p => p.x).ToList();
             var pointsY = points.OrderBy(p => p.y).ToList();
-            
-        }
-        public static Node createNode(List<Point> pointsX, List<Point> pointsY, int level) 
-        {
-            var midPointXIndex = pointsX.Count / 2;
-            Point midPointX = pointsX[midPointXIndex];
-            var leftListX = pointsX.Take(midPointXIndex).ToList();
-            var rightListX = pointsX.Skip(midPointXIndex).ToList();
 
-            var leftListY = new List<Point>();
-            var rightListY = new List<Point>();
-            for (int i = 0; i < pointsY.Count; i++)//Tutaj następuje podział listy posortowanej po Y według kryterium kolejności z listy posortowanej po X.                             
-            {                                      //Tzn.MidPoint to punkt środkowy listy posortowanej po X. Jeżeli współrzędna X punktu listy posortowanej
-                if (pointsY[i].x <= midPointX.x)    // po Y jest mniejsza równa, ląduje w w nowej lisćie "leftListY", w przeciwnym razie w "rightListY"
-                {
-                    leftListY.Add(pointsY[i]);
-                }
-                else
-                {
-                    rightListY.Add(pointsY[i]);
-                }
-            }
+            var tree = createNode(pointsX, pointsY, 0, "root");
+            var a = 1;
+        }
+        public static Node createNode(List<Point> pointsX, List<Point> pointsY, int level, string side) 
+        {
 
             Node root = new Node();
+            if (level % 2 == 0)
+            {
+                if (pointsX.Count < 3) 
+                {
+                    root.LeftLeaf = new Node();
+                    root.RightLeaf = new Node();
+                    root.LeftLeaf.Point = pointsX[0];
+                    if (pointsX.Count > 1)
+                        root.RightLeaf.Point = pointsX[1];
+                    root.Level = level;
+                    return root;
+                }
+                var midPointXIndex = pointsX.Count / 2;
+                Point midPointX = pointsX[midPointXIndex];
 
-            root.LeftLeaf = createNode(leftListX, leftListY, level + 1);
-            root.RightLeaf = createNode(rightListX, rightListY, level + 1);
+                var leftListX = pointsX.Take(midPointXIndex).ToList();
+                var rightListX = pointsX.Skip(midPointXIndex).ToList();
+                var leftListY = new List<Point>();
+                var rightListY = new List<Point>();
 
-            return null;
+                for (int i = 0; i < pointsY.Count; i++)
+                {
+                    if (pointsY[i].x < midPointX.x)
+                    {
+                        leftListY.Add(pointsY[i]);
+                    }
+                    else
+                    {
+                        rightListY.Add(pointsY[i]);
+                    }
+                }
+
+                root.LeftLeaf = createNode(leftListX, leftListY, level + 1, "left");
+                root.RightLeaf = createNode(rightListX, rightListY, level + 1, "right");
+            }
+            else 
+            {
+                if (pointsY.Count < 3)
+                {
+                    root.LeftLeaf = new Node();
+                    root.RightLeaf = new Node();
+                    root.LeftLeaf.Point = pointsY[0];
+                    if(pointsY.Count > 1)
+                        root.RightLeaf.Point = pointsY[1];
+                    root.Level = level;
+                    return root;
+                }
+
+                var midPointYIndex = pointsY.Count / 2;
+                Point midPointY = pointsY[midPointYIndex];
+
+                var leftListY = pointsY.Take(midPointYIndex).ToList();
+                var rightListY = pointsY.Skip(midPointYIndex).ToList();
+                var leftListX = new List<Point>();
+                var rightListX = new List<Point>();
+
+                for (int i = 0; i < pointsX.Count; i++)
+                {
+                    if (pointsX[i].y < midPointY.y)
+                    {
+                        leftListX.Add(pointsX[i]);
+                    }
+                    else
+                    {
+                        rightListX.Add(pointsX[i]);
+                    }
+                }
+
+                root.LeftLeaf = createNode(leftListX, leftListY, level + 1, "left");
+                root.RightLeaf = createNode(rightListX, rightListY, level + 1, "right");
+
+            }
+            return root;
         }
     }
 }
