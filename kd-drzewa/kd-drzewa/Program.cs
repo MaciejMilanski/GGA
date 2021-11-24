@@ -22,25 +22,39 @@ namespace kd_drzewa
             Node root = new Node();
             if (level % 2 == 0)
             {
-                if (pointsX.Count < 3) 
-                {                    
-                    root.LeftPoint = pointsX[0];
-                    if (pointsX.Count > 1)
-                        root.RightPoint = pointsX[1];                    
+                if (pointsX.Count < 2) 
+                {
+                    if (pointsX.Count > 0)
+                    {
+                        root.Point = pointsX.First();
+                        root.Level = level;
+                    }
                     return root;
                 }
                 root.Level = level;
                 var midPointXIndex = pointsX.Count / 2;
+                if (pointsY.Count % 2 == 0) midPointXIndex -= 1; //jeżeli ilość parzysta narysuj kreskę na mniejszym elemencie
                 Point midPointX = pointsX[midPointXIndex];
 
-                var leftListX = pointsX.Take(midPointXIndex).ToList();
-                var rightListX = pointsX.Skip(midPointXIndex).ToList();
+                var leftListX = new List<Point>();
+                var rightListX = new List<Point>();
+                for (int i = 0; i < pointsX.Count; i++) 
+                {
+                    if (pointsX[i].x <= midPointX.x)
+                    {
+                        leftListX.Add(pointsX[i]);
+                    }
+                    else
+                    {
+                        rightListX.Add(pointsX[i]);
+                    }
+                }                
+
                 var leftListY = new List<Point>();
                 var rightListY = new List<Point>();
-
                 for (int i = 0; i < pointsY.Count; i++)
                 {
-                    if (pointsY[i].x < midPointX.x)
+                    if (pointsY[i].x <= midPointX.x)
                     {
                         leftListY.Add(pointsY[i]);
                     }
@@ -55,25 +69,39 @@ namespace kd_drzewa
             }
             else 
             {
-                if (pointsY.Count < 3)
+                if (pointsY.Count < 2)
                 {
-                    root.LeftPoint = pointsY[0];
-                    if(pointsY.Count > 1)
-                        root.RightPoint = pointsY[1];
+                    if (pointsY.Count > 0)
+                    {
+                        root.Point = pointsY.First();
+                        root.Level = level;
+                    }
                     return root;
                 }
                 root.Level = level;
-                var midPointYIndex = Math.up(pointsY.Count / 2).;//ZAOKRĄGLIĆ DO GÓRY
+                var midPointYIndex = pointsY.Count / 2;
+                if (pointsY.Count % 2 == 0) midPointYIndex -= 1; //jeżeli ilość parzysta narysuj kreskę na mniejszym elemencie
                 Point midPointY = pointsY[midPointYIndex];
 
-                var leftListY = pointsY.Take(midPointYIndex).ToList();
-                var rightListY = pointsY.Skip(midPointYIndex).ToList();
+                var leftListY = new List<Point>();
+                var rightListY = new List<Point>();
+                for (int i = 0; i < pointsY.Count; i++)
+                {
+                    if (pointsY[i].y <= midPointY.y)
+                    {
+                        leftListY.Add(pointsY[i]);
+                    }
+                    else
+                    {
+                        rightListY.Add(pointsY[i]);
+                    }
+                }
+
                 var leftListX = new List<Point>();
                 var rightListX = new List<Point>();
-
                 for (int i = 0; i < pointsX.Count; i++)
                 {
-                    if (pointsX[i].y < midPointY.y)
+                    if (pointsX[i].y <= midPointY.y)
                     {
                         leftListX.Add(pointsX[i]);
                     }

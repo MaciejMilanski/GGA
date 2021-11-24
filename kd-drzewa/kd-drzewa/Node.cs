@@ -18,7 +18,6 @@ namespace kd_drzewa
         public Node LeftLeaf { get; set; }
         public Node RightLeaf { get; set; }
         public int Level { get; set; }
-        public Point LeftPoint { get; set; }
-        public Point RightPoint { get; set; }
+        public Point Point { get; set; }
     }
 }
