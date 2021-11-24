@@ -8,6 +8,12 @@ namespace kd_drzewa
 {
     public class Point
     {
+        public Point() { }
+        public Point(string input)
+        {
+            x = Convert.ToInt32(input.Split(",")[0]);
+            y = Convert.ToInt32(input.Split(",")[1]);
+        }
         public string ToString() 
         {
             return x + "," + y;
