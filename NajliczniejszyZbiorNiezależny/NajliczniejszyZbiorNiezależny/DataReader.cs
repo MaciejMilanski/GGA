@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace kd_drzewa
+namespace NajliczniejszyZbiorNiezależny
 {
     public class DataReader
     {
@@ -23,18 +23,13 @@ namespace kd_drzewa
                 data = streamReader.ReadToEnd();
             }
             data = Regex.Replace(data, @"\s", "");
-            var interResults = data.Split(";");
-            foreach (var result in interResults)
-            {
-                if (result != "")
-                {
-                    Point point = new Point();
-                    point.x = Convert.ToInt32(result.Split(",")[0]);
-                    point.y = Convert.ToInt32(result.Split(",")[1]);
-                    points.Add(point);
-                }
-            }
-                return points; 
+            var interResults = data.Split(";").ToList();
+            
+                return points;
+        }
+        public static void createTree(List<string> result)
+        {
+            var level0 = result.SingleOrDefault()
         }
 
     }
