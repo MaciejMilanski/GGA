@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NajliczniejszyZbiorNiezależny
 {
@@ -6,8 +8,9 @@ namespace NajliczniejszyZbiorNiezależny
     {
         static void Main(string[] args)
         {
-            var points = DataReader.GetPoints();
-
+            var rowNodes = DataReader.GetRowNodes();
+            var tree = TreeManager.createTree(rowNodes.ToList(), rowNodes, new RawNode(1));
+            var a = 1;
         }
     }
 }

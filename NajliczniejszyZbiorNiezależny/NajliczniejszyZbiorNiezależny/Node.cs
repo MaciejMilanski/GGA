@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace NajliczniejszyZbiorNiezależny
 {
-    class Node
+    public class Node
     {
-        public Node() { }      
-        public List<Node> Leafs;
+        public Node() { }
+        public Node(int _ID) 
+        {
+            ID = _ID;
+        }
+        public List<Node> SubNodes { get; set; }
+        public int Power { get; set; }
         public int Level { get; set; }
         //public Point Point { get; set; }
-        public double Value { get; set; }
+        public int Value { get; set; }
+        public int ParentId { get; set; }
+        public int ID { get; set; }
     }
 }
