@@ -9,8 +9,9 @@ namespace NajliczniejszyZbiorNiezależny
         static void Main(string[] args)
         {
             var rowNodes = DataReader.GetRowNodes();
-            var tree = TreeManager.createTree(rowNodes.ToList(), rowNodes, new RawNode(1));
-            var a = 1;
+            var tree = TreeManager.CreateTree(rowNodes.ToList(), rowNodes, new RawNode(1));
+            var maxPower = TreeManager.GetMaxPower(tree);
+            Console.WriteLine("Rozmiar największego zbioru niezależnego: " + maxPower.ToString());
         }
     }
 }

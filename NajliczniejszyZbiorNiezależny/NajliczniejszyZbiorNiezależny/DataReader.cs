@@ -10,7 +10,7 @@ namespace NajliczniejszyZbiorNiezależny
 {
     public class DataReader
     {
-        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data1.txt";
+        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data.txt";
         public DataReader() 
         {
         }

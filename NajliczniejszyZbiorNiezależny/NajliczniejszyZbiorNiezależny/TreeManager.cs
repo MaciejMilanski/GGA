@@ -8,7 +8,7 @@ namespace NajliczniejszyZbiorNiezależny
 {
     public class TreeManager
     {
-        public static Node createTree(List<RawNode> rawNodesNM, List<RawNode> rawNodes, RawNode parent) 
+        public static Node CreateTree(List<RawNode> rawNodesNM, List<RawNode> rawNodes, RawNode parent) 
         {
             Node root = new Node();
             root.SubNodes = new List<Node>();
@@ -29,9 +29,33 @@ namespace NajliczniejszyZbiorNiezależny
 
             foreach (var childNode in childNodes) 
             {
-                root.SubNodes.Add(createTree(rawNodesNM, rawNodes.ToList(), childNode));
+                root.SubNodes.Add(CreateTree(rawNodesNM, rawNodes.ToList(), childNode));
             }
             return root;
+        }
+        public static int GetMaxPower(Node tree) 
+        {
+            if (tree.SubNodes is null) //jeżeli jest liściem
+            {
+                return 1;
+            }
+            else
+            {
+                List<int> powers = new List<int>(){1, 0}; //1 plus suma
+                foreach (var child in tree.SubNodes) 
+                {
+                    if (child.SubNodes is not null) 
+                    {
+                        foreach (var grandChild in child.SubNodes)
+                        {
+                            powers[0] += GetMaxPower(grandChild);
+                        }
+                    }                   
+                    powers[1] += GetMaxPower(child);
+                }
+                tree.Power = powers.Max();
+                return powers.Max();               
+            }
         }
     }
 }
