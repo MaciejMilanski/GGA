@@ -15,5 +15,6 @@ namespace Punkty_przeciec
         }
         public Point Begin { get; set; }
         public Point End { get; set; }
+        public string Direction { get; set; }
     }
 }

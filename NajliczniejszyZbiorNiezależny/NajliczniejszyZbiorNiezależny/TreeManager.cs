@@ -35,7 +35,7 @@ namespace NajliczniejszyZbiorNiezależny
         }
         public static int GetMaxPower(Node tree) 
         {
-            if (tree.SubNodes is null) //jeżeli jest liściem XML2 U2-1A
+            if (tree.SubNodes is null) 
             {
                 return 1;
             }

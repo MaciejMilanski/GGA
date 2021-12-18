@@ -10,7 +10,7 @@ namespace Punkty_przeciec
 {
     public class DataReader
     {
-        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data.txt";
+        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data1.txt";
         public DataReader() 
         {
         }
@@ -32,8 +32,13 @@ namespace Punkty_przeciec
                     Sector sector = new Sector();
                     sector.Begin.x = Convert.ToInt32(result.Split(";")[0].Split(",")[0]);
                     sector.Begin.y = Convert.ToInt32(result.Split(";")[0].Split(",")[1]);
+                    sector.Begin.Extreme = "b";
                     sector.End.x = Convert.ToInt32(result.Split(";")[1].Split(",")[0]);
                     sector.End.y = Convert.ToInt32(result.Split(";")[1].Split(",")[1]);
+                    sector.End.Extreme = "e";
+                    sector.Direction = result.Split(";")[2];
+                    sector.Begin.ParentSectorDirection = result.Split(";")[2];
+                    sector.End.ParentSectorDirection = result.Split(";")[2];
                     sectors.Add(sector);
                 }
             }
