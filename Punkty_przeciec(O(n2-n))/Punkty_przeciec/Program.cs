@@ -12,42 +12,28 @@ namespace Punkty_przeciec
             var vertSectors = sectors.Where(s => s.Direction == "v");
             var orderedPoints = orderPoints(sectors);
 
-            List<ResultRepository> resultRepositories = new List<ResultRepository>();
             List<Point> result = new List<Point>();
 
-            AVLTree activeSectors = new AVLTree();
+            List<Sector> activeSectors = new List<Sector>();
 
             for (int i = 0; i < orderedPoints.Count; i++) 
             {
                 if (orderedPoints[i].ParentSectorDirection == "h" && orderedPoints[i].Extreme == "b")
                 {
-                    activeSectors.root = activeSectors.insert(activeSectors.root, orderedPoints[i].Sector);
+                    activeSectors.Add(orderedPoints[i].Sector);
                 }
                 else if (orderedPoints[i].ParentSectorDirection == "h" && orderedPoints[i].Extreme == "e")
                 {
-                    activeSectors.root = activeSectors.deleteNode(activeSectors.root, orderedPoints[i].Sector);
+                    activeSectors.Remove(orderedPoints[i].Sector);
                 }
                 else
                 {
-                    int height = activeSectors.height(activeSectors.root);
-
-                    activeSectors.getAllElements(activeSectors.root);
-                    var allHorizontal = activeSectors.allSectors;
-                    activeSectors.clearAllList();
-
-                    if(allHorizontal.Count > 0) 
+                    foreach (var sector in activeSectors) 
                     {
-                        ResultRepository resultRepository = new ResultRepository();
-                        resultRepository.XCoordSectors = allHorizontal.ToList();
-                        resultRepository.YCoord = orderedPoints[i];
-                        resultRepositories.Add(resultRepository);
-                    }                    
+                        Point crossing = new Point(orderedPoints[i].x, sector.Begin.y);
+                        result.Add(crossing);
+                    }
                 }
-            }
-
-            foreach (var repo in resultRepositories) 
-            {
-                result.AddRange(repo.GetCrossings());
             }
 
             foreach (var crossing in result) 
