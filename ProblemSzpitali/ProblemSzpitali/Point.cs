@@ -10,11 +10,11 @@ namespace ProblemSzpitali
     {
         public Point() 
         {
-            NeighboursDistances = new List<double>();
+            NeighboursDistances = new List<NeighboursDistances>();
         }
         public int x { get; set; }
         public int y { get; set; }
-        public List<double> NeighboursDistances { get; set; }
+        public List<NeighboursDistances> NeighboursDistances { get; set; }
         public string ToString()
         {
             return x + "," + y;
