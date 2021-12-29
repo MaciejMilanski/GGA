@@ -11,10 +11,12 @@ namespace ProblemSzpitali
         public Point() 
         {
             NeighboursDistances = new List<NeighboursDistances>();
+            IsHospital = false;
         }
         public int x { get; set; }
         public int y { get; set; }
         public List<NeighboursDistances> NeighboursDistances { get; set; }
+        public bool IsHospital { get; set; }
         public string ToString()
         {
             return x + "," + y;

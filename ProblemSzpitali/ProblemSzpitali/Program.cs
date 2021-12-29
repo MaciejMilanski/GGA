@@ -29,13 +29,16 @@ namespace ProblemSzpitali
             int kRange = Convert.ToInt32(Console.ReadLine());
 
             Point firstPoint = getFirstPointRandomly(points);
+            firstPoint.IsHospital = true;
             result.Add(firstPoint);
             points.Remove(firstPoint);
 
-            for (int i = 0; i < kRange; i++)
+            for (int i = 0; i < kRange-1; i++)
             {
                 var nextPoint = result.Last().NeighboursDistances.SingleOrDefault(n => n.Distance == result.Last().NeighboursDistances.Max(d => d.Distance)).Point;
+                nextPoint.IsHospital = true;                                
                 result.Add(nextPoint);
+                result.Last().NeighboursDistances.RemoveAll(nd => nd.Point.IsHospital == true);
             }
             printPoints(result);
         }
