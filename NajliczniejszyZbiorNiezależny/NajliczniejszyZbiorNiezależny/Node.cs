@@ -14,11 +14,21 @@ namespace NajliczniejszyZbiorNiezależny
             ID = _ID;
         }
         public List<Node> SubNodes { get; set; }
+        //public int _power
         public int Power { get; set; }
+            //get
+            //{ 
+            //    if()
+            //}
+            //set 
+            //{
+            //    _power = value;
+            //}
+        //}
         public int Level { get; set; }
         //public Point Point { get; set; }
         public int Value { get; set; }
         public int ParentId { get; set; }
-        public int ID { get; set; }
+        public int ID { get; set; }        
     }
 }

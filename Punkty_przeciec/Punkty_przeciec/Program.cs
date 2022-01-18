@@ -31,6 +31,8 @@ namespace Punkty_przeciec
                 {
                     int height = activeSectors.height(activeSectors.root);
 
+                    activeSectors.search(activeSectors.root, orderedPoints[i]);
+
                     activeSectors.getAllElements(activeSectors.root);
                     var allHorizontal = activeSectors.allSectors;
                     activeSectors.clearAllList();
@@ -52,8 +54,9 @@ namespace Punkty_przeciec
 
             foreach (var crossing in result) 
             {
-                Console.WriteLine(crossing.ToString());
+                Console.WriteLine(crossing.ToString());                
             }
+            Console.WriteLine(result.Count.ToString());
 
         }
         public static List<Point> orderPoints(List<Sector> sectors)

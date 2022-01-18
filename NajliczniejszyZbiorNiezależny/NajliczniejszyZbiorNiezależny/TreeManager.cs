@@ -35,26 +35,33 @@ namespace NajliczniejszyZbiorNiezależny
         }
         public static int GetMaxPower(Node tree) 
         {
-            if (tree.SubNodes is null) 
+            if (tree.Power == 0)
             {
-                return 1;
-            }
-            else
-            {
-                List<int> powers = new List<int>(){1, 0}; //1 plus suma
-                foreach (var child in tree.SubNodes) 
+                if (tree.SubNodes is null)
                 {
-                    if (child.SubNodes is not null) 
-                    {
-                        foreach (var grandChild in child.SubNodes)
-                        {
-                            powers[0] += GetMaxPower(grandChild);
-                        }
-                    }                   
-                    powers[1] += GetMaxPower(child);
+                    return 1;
                 }
-                tree.Power = powers.Max();
-                return powers.Max();               
+                else
+                {
+                    List<int> powers = new List<int>() { 1, 0 }; //1 plus suma
+                    foreach (var child in tree.SubNodes)
+                    {
+                        if (child.SubNodes is not null)
+                        {
+                            foreach (var grandChild in child.SubNodes)
+                            {
+                                powers[0] += GetMaxPower(grandChild);
+                            }
+                        }
+                        powers[1] += GetMaxPower(child);
+                    }
+                    tree.Power = powers.Max();
+                    return powers.Max();
+                }
+            }
+            else 
+            {
+                return tree.Power;
             }
         }
     }
