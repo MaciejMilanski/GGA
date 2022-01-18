@@ -11,7 +11,8 @@ namespace Punkty_przeciec
 		public Node search(Node root, Sector key)
 		{
 			if (root == null ||
-				root.key.End.y == key.End.y)
+				(root.key.End.y >= key.End.y && root.key.Begin.y <= key.Begin.y))
+				allSectors.Add(root.key);
 				return root;
 
 			if (root.key.End.y < key.End.y)
