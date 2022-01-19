@@ -8,18 +8,19 @@ namespace Punkty_przeciec
 
 		public Node root;
 		public List<Sector> allSectors = new List<Sector>();
-		public Node search(Node root, Sector key)
-		{
-			if (root == null ||
-				(root.key.End.y >= key.End.y && root.key.Begin.y <= key.Begin.y))
-				allSectors.Add(root.key);
-				return root;
+		//public Node search(Node root, Sector key)
+		//{
+		//	if (root == null ||
+		//		(root.key.End.y >= key.End.y && root.key.End.y <= key.Begin.y))
+		//		allSectors.Add(root.key);
+		//		return root;
 
-			if (root.key.End.y < key.End.y)
-				return search(root.right, key);
-
-			return search(root.left, key);
-		}
+		//	if (root.key.End.y < key.End.y)
+		//	{
+		//		return search(root.right, key);
+		//	}
+		//	return search(root.left, key);
+		//}
 
 		public int height(Node N)
 		{
@@ -188,13 +189,14 @@ namespace Punkty_przeciec
 			return root;
 		}
 
-		public void getAllElements(Node node)
+		public void getCrossedElements(Node root, Sector key)
 		{
-			if (node != null)
+			if (root != null)
 			{
-				allSectors.Add(node.key);
-				getAllElements(node.left);
-				getAllElements(node.right);
+				if (root.key.End.y >= key.End.y && root.key.End.y <= key.Begin.y)
+					allSectors.Add(root.key);
+				getCrossedElements(root.left, key);
+				getCrossedElements(root.right, key);
 			}
 		}
 		public void clearAllList() 

@@ -31,9 +31,9 @@ namespace Punkty_przeciec
                 {
                     int height = activeSectors.height(activeSectors.root);
 
-                    activeSectors.search(activeSectors.root, orderedPoints[i].Sector);
+                    //activeSectors.search(activeSectors.root, orderedPoints[i].Sector);
 
-                    //activeSectors.getAllElements(activeSectors.root);
+                    activeSectors.getCrossedElements(activeSectors.root, orderedPoints[i].Sector);
                     var allHorizontal = activeSectors.allSectors;
                     activeSectors.clearAllList();
 
