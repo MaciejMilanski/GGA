@@ -191,15 +191,14 @@ namespace Punkty_przeciec
 
 		public void getCrossedElements(Node root, Sector key)
 		{
-			if (root != null)
-			{
-				if (root.key.End.y >= key.End.y && root.key.End.y <= key.Begin.y)
-					allSectors.Add(root.key);
-				getCrossedElements(root.left, key);
-				getCrossedElements(root.right, key);
-			}
-		}
-		public void clearAllList() 
+            if (root != null && root.key.End.y >= key.End.y && root.key.End.y <= key.Begin.y)
+            {
+                getCrossedElements(root.left, key);
+                getCrossedElements(root.right, key);
+                allSectors.Add(root.key);
+            }
+        }
+        public void clearAllList() 
 		{
 			allSectors = new List<Sector>();
 		}

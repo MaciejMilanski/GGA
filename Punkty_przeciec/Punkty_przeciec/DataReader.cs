@@ -10,7 +10,7 @@ namespace Punkty_przeciec
 {
     public class DataReader
     {
-        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data1.txt";
+        private static readonly string _inputPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString() + "\\Data2.txt";
         public DataReader() 
         {
         }
